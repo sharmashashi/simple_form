@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.awt.Dimension;
 
@@ -54,9 +57,9 @@ public class SimpleForm {
         _education.setBounds(10, 130, 100, 50);
         _educationDropDown.setBounds(120, 130, 100, 50);
         _educationDropDown.setPreferredSize(new Dimension(200, 50));
-       _educationDropDown.setSelectedIndex(1);
-        
+        _educationDropDown.setSelectedIndex(1);
         _append.setBounds(10, 190, 480, 50);
+        _append.addActionListener(new ButtonEvent(_male, _female, _nameField, _educationDropDown));
         //
         _frame.add(_nameLabel);
         _frame.add(_nameField);
@@ -77,8 +80,38 @@ public class SimpleForm {
 }
 
 class ButtonEvent implements ActionListener {
+    JRadioButton male;
+    JRadioButton female;
+    JTextField name;
+    JComboBox<String> education;
+
+    ButtonEvent(JRadioButton m, JRadioButton f, JTextField field, JComboBox<String> dd) {
+        male = m;
+        female = f;
+        name = field;
+        education = dd;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        String gender;
+        String _name;
+        String _education;
+
+        gender = male.isEnabled() ? "Male" : "Female";
+        _name = name.getText();
+        _education = (String) education.getSelectedItem();
+
+        File _file = new File("Customer_form.tct");
+        try {
+            FileWriter _writer = new FileWriter(_file);
+            _writer.write(_name + "," + gender + "," + _education);
+            _writer.close();
+            
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        
 
     }
 }
