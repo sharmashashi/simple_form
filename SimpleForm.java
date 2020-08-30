@@ -107,11 +107,11 @@ class ButtonEvent implements ActionListener {
             FileWriter _writer = new FileWriter(_file);
             _writer.write(_name + "," + gender + "," + _education);
             _writer.close();
-            
+            System.exit(0);
+
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-        
 
     }
 }
