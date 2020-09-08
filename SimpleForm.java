@@ -34,6 +34,7 @@ public class SimpleForm {
         _education = new JLabel("Education");
         _append = new JButton("Append to file");
         _male = new JRadioButton("Male");
+        _male.setSelected(true);
         _female = new JRadioButton("female");
         _dropDownItems = new HashMap<>();
         _dropDownItems.put(1, "SEE");
@@ -47,7 +48,7 @@ public class SimpleForm {
         _gender = new ButtonGroup();
         _gender.add(_male);
         _gender.add(_female);
-
+       
         //
         _nameLabel.setBounds(10, 10, 100, 50);
         _nameField.setBounds(70, 10, 350, 50);
